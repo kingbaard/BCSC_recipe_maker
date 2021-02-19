@@ -12,7 +12,20 @@
 </head>
 <body>
 
-<h1 class="container text-center">Hello <%= name %> </h1>
+<h1 class="container text-center">Recipe Helper </h1>
+<div id="recipeInput">
+  <form>
+    <label for="recipeList">Recipe</label>
+    <select name="recipeList" id="recipelist">
+      <% DBrecipes.forEach(recipe => { %>
+        <option value= <%=recipe.name %> > <%=recipe.name%> </option>
+      <% }); %>  
+    </select>
+    <label for="recipeList">Size</label>
+    <input type="number">
+    <button type="submit" class="btn btn-info"></button>
+  </form>
+</div>
 
 
 <!-- JavaScript Bundle with Popper -->

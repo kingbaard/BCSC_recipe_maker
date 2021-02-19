@@ -1,6 +1,7 @@
 const express = require('express')
 require('dotenv').config()
-const bodyParser = require('body-parser')
+const bodyParser = require('body-parser'),
+  tmpDB = require('./temp');
 
 const app = express()
 
@@ -15,9 +16,12 @@ app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: false })) 
 
 // Basic index route
-app.get('/', (req, res) =>{
-  res.render('index', {name: 'BCSC'})
-})
+// app.get('/', (req, res) =>{
+//   res.render('index', {name: 'BCSC'})
+// })
+
+app.get('/', tmpDB.showRecipes)
+app.get('/g')
 
 // Server listens on port 5000
 const PORT = process.env.PORT || 5000
