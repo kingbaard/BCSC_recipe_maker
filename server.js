@@ -1,10 +1,14 @@
 const express = require('express')
 require('dotenv').config()
 const bodyParser = require('body-parser'),
-  tmpDB = require('./temp');
+  controller = require('./controller');
 
 const app = express()
-
+const mongoose = require("mongoose");
+mongoose.connect(
+  "mongodb+srv://Admin:admin@cluster0.jcv2w.mongodb.net/bcsc?retryWrites=true&w=majority",
+  { useNewUrlParser: true, useCreateIndex: true, useUnifiedTopology: true, useFindAndModify: false }  // These are settings for the Mongoose connection.
+);
 // sets view engine to ejs
 app.set('view engine', 'ejs')
 
@@ -20,8 +24,10 @@ app.use(bodyParser.urlencoded({ extended: false }))
 //   res.render('index', {name: 'BCSC'})
 // })
 
-app.get('/', tmpDB.showRecipes)
+app.get('/', controller.showRecipes)
 app.get('/g')
+// app.post('/calculate', controller.showResult)
+// app.get('/calculate', controller.reportResults)   
 
 // Server listens on port 5000
 const PORT = process.env.PORT || 5000

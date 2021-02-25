@@ -14,18 +14,24 @@
 
 <h1 class="container text-center">Recipe Helper </h1>
 <div id="recipeInput">
-  <form>
+  <form action="/calculate">
     <label for="recipeList">Recipe</label>
-    <select name="recipeList" id="recipelist">
+    <select name="recipeList" id="recipeSelector">
       <% DBrecipes.forEach(recipe => { %>
         <option value= <%=recipe.name %> > <%=recipe.name%> </option>
       <% }); %>  
     </select>
-    <label for="recipeList">Size</label>
-    <input type="number">
-    <button type="submit" class="btn btn-info"></button>
+    <label for="recipeList">Batch size</label>
+    <input name="amount" type="number">
+    <select name="metric" id="unitSelector">
+        <option value= "bars">Bars</option>
+        <option value= "bars">Pounds</option>
+        <option value= "bars">Ounces</option>
+    </select>
+    <button type="submit" class="btn btn-info">Generate Recipe!</button>
   </form>
 </div>
+
 
 
 <!-- JavaScript Bundle with Popper -->
