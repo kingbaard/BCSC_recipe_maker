@@ -18,6 +18,10 @@ app.use(bodyParser.urlencoded({ extended: false }))
 //Register routes
 app.use('/recipes', require('./routes/recipe'))
 
+// index route for possible future login
+app.get('/', (req,res) =>{
+  res.send('index')
+})
 
 // Server listens on port 5000
 const PORT = process.env.PORT || 5000

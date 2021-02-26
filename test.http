@@ -1,1 +1,41 @@
 GET http://localhost:5000/recipes
+
+###
+POST http://localhost:5000/recipes/addrecipe
+Content-Type: application/json
+
+{
+  "servings": 10,
+  "title": "also a fake recipe",
+  "ingredients": [
+    {
+      "name": "juice",
+      "amount": 1,
+      "measurement": "carton"
+    },
+    { 
+      "name": "churros",
+      "amount": 3,
+      "measurement": "sticks"
+    }
+  ],
+  "blends": {
+    "title": "vanilla",
+    "ingredients":[
+    {
+      "name": "vanilla extract",
+      "amount": 4,
+      "measurements": "tsp" 
+    },
+    {
+      "name": "creame (probably)",
+      "amount": 2,
+      "measurements": "lbs" 
+    }
+  ] 
+  }
+}
+
+###
+
+GET http://localhost:5000/recipes/60397601a3e79b73dc2cca2b

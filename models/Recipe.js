@@ -9,6 +9,16 @@ const recipeSchema = new mongoose.Schema({
       amount: Number,
       measurement: String
     }
+  ],
+  blends: {
+    title: String
+  },
+  ingredients: [
+    {
+      name: String,
+      amount: Number,
+      measurement: String
+    }
   ]
 })
 
