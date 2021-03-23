@@ -25,10 +25,9 @@ app.get('/', (req,res) =>{
 
 // Server listens on port 5000
 const PORT = process.env.PORT || 5000
-const HOST = process.env.HOST
 
 connectDB().then(() =>{
   app.listen(PORT, () =>{
-    console.log(`Server started on: http://${HOST}:${PORT}`.bold.green)
+    console.log(`Server started on: http://localhost:${PORT}`.bold.green)
   })
 })

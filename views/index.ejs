@@ -21,33 +21,26 @@
 
     <h1 class="container text-center">Recipe Helper </h1>
     <div id="recipeInput">
-      <form action="/calculate">
+      <form action="/calculate" method="POST">
         <label for="recipeList">Recipe</label>
-        <select name="recipeList"
-                id="recipeSelector">
+
+        <select name="recipeList" id="recipeSelector">
           <% DBrecipes.forEach(recipe=> { %>
             <% console.log(recipe) %> 
-            <option value=<%=recipe.title
-                    %> > <%=recipe.title%>
-            </option>
-            <% });
-               %>
+            <option value=<%=recipe.title%> > <%=recipe.title%></option>
+            <% });%>
         </select>
+
         <label for="recipeList">Batch size</label>
-        <input name="amount"
-               type="number">
-        <select name="metric"
-                id="unitSelector">
+        <input name="amount" type="number">
+        <select name="metric" id="unitSelector">
           <option value="bars">Bars</option>
           <option value="bars">Pounds</option>
           <option value="bars">Ounces</option>
         </select>
-        <button type="submit"
-                class="btn btn-info">Generate Recipe!</button>
+        <button type="submit" class="btn btn-info">Generate Recipe!</button>
       </form>
     </div>
-
-
 
     <!-- JavaScript Bundle with Popper -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js"

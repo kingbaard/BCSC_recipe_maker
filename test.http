@@ -1,6 +1,7 @@
 GET http://localhost:5000/recipes
 
 ###
+
 POST http://localhost:5000/recipes/addrecipe
 Content-Type: application/json
 
@@ -39,3 +40,7 @@ Content-Type: application/json
 ###
 
 GET http://localhost:5000/recipes/60593d593fbd2d63fc0da84a
+
+###
+
+DELETE http://localhost:5000/recipes/60593dca3fbd2d63fc0da84f
