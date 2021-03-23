@@ -11,15 +11,15 @@ const recipeSchema = new mongoose.Schema({
     }
   ],
   blends: {
-    title: String
-  },
-  ingredients: [
-    {
-      name: String,
-      amount: Number,
-      measurement: String
-    }
+    title: String,
+      ingredients: [
+      {
+        name: String,
+        amount: Number,
+        measurement: String
+      }
   ]
+  }
 })
 
 module.exports = mongoose.model('recipe', recipeSchema)

@@ -1,8 +1,8 @@
 const Recipe = require('../models/Recipe')
 
 exports.index = async(req, res) =>{
-  const recipes = await Recipe.find({})
-  res.send(recipes)
+  const DBrecipes = await Recipe.find({})
+  res.render('index', {DBrecipes})
 }
 
 exports.getRecipe = async(req, res) =>{

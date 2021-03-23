@@ -1,34 +1,58 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <!-- CSS only -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible"
+          content="IE=edge">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
 
-  <title>BCSC</title>
-</head>
-<body>
+    <!-- CSS only -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css"
+          rel="stylesheet"
+          integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl"
+          crossorigin="anonymous">
 
-<h1 class="container text-center">Recipe Helper </h1>
-<div id="recipeInput">
-  <form>
-    <label for="recipeList">Recipe</label>
-    <select name="recipeList" id="recipelist">
-      <% DBrecipes.forEach(recipe => { %>
-        <option value= <%=recipe.name %> > <%=recipe.name%> </option>
-      <% }); %>  
-    </select>
-    <label for="recipeList">Size</label>
-    <input type="number">
-    <button type="submit" class="btn btn-info"></button>
-  </form>
-</div>
+    <title>BCSC</title>
+  </head>
+
+  <body>
+
+    <h1 class="container text-center">Recipe Helper </h1>
+    <div id="recipeInput">
+      <form action="/calculate">
+        <label for="recipeList">Recipe</label>
+        <select name="recipeList"
+                id="recipeSelector">
+          <% DBrecipes.forEach(recipe=> { %>
+            <% console.log(recipe) %> 
+            <option value=<%=recipe.title
+                    %> > <%=recipe.title%>
+            </option>
+            <% });
+               %>
+        </select>
+        <label for="recipeList">Batch size</label>
+        <input name="amount"
+               type="number">
+        <select name="metric"
+                id="unitSelector">
+          <option value="bars">Bars</option>
+          <option value="bars">Pounds</option>
+          <option value="bars">Ounces</option>
+        </select>
+        <button type="submit"
+                class="btn btn-info">Generate Recipe!</button>
+      </form>
+    </div>
 
 
-<!-- JavaScript Bundle with Popper -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>
-</body>
+
+    <!-- JavaScript Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0"
+            crossorigin="anonymous"></script>
+  </body>
+
 </html>
