@@ -3,7 +3,8 @@ const Recipe = require('../models/Recipe')
 // @Method  GET
 exports.index = async(req, res) =>{
   const DBrecipes = await Recipe.find({})
-  res.render('index', {DBrecipes})
+  // res.render('index', {DBrecipes})
+  res.send(DBrecipes)
 }
 
 // @Method  GET

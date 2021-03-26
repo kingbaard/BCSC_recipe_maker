@@ -39,8 +39,8 @@ Content-Type: application/json
 
 ###
 
-GET http://localhost:5000/recipes/60593d593fbd2d63fc0da84a
+GET http://localhost:5000/recipes/605d21c5fa5ab611c0286947
 
 ###
 
-DELETE http://localhost:5000/recipes/60593dca3fbd2d63fc0da84f
+DELETE http://localhost:5000/recipes/605d21c5fa5ab611c0286947
