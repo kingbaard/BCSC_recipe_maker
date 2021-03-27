@@ -17,6 +17,7 @@ app.use(bodyParser.urlencoded({ extended: false }))
 
 //Register routes
 app.use('/recipes', require('./routes/recipe'))
+app.use('/auth', require('./routes/auth'))
 
 // index route for possible future login
 app.get('/', (req,res) =>{

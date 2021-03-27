@@ -44,3 +44,13 @@ GET http://localhost:5000/recipes/605d21c5fa5ab611c0286947
 ###
 
 DELETE http://localhost:5000/recipes/605d21c5fa5ab611c0286947
+
+### 
+
+POST http://localhost:5000/auth/signup
+Content-Type: application/json
+
+{
+  "email": "coledtaylor3@gmail.com",
+  "password": "mypassword"
+}
