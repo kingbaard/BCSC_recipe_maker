@@ -1,4 +1,5 @@
 GET http://localhost:5000/recipes
+# Cookie: token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjA1ZjY4NDg0MmJiYWI1MTU4ODhkMzRiIn0sImlhdCI6MTYxNjg4MDk4MSwiZXhwIjoxNjE3MzEyOTgxfQ.BWK8RoDMJZLSoTjRhpj-D-llESuqH5QiqkGJPU9u57E; Max-Age=432000; Path=/; Expires=Thu, 01 Apr 2021 21:36:21 GMT; HttpOnly
 
 ###
 
@@ -47,10 +48,24 @@ DELETE http://localhost:5000/recipes/605d21c5fa5ab611c0286947
 
 ### 
 
-POST http://localhost:5000/auth/signup
+POST http://localhost:5000/auth/register
 Content-Type: application/json
 
 {
   "email": "coledtaylor3@gmail.com",
   "password": "mypassword"
 }
+
+###
+
+POST http://localhost:5000/auth/signin
+Content-Type: application/json
+
+{
+  "email": "coledtaylor3@gmail.com",
+  "password": "mypassword"
+}
+
+###
+
+GET http://localhost:5000/auth/signout

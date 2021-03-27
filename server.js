@@ -1,6 +1,7 @@
 const express = require('express')
 require('dotenv').config()
-const bodyParser = require('body-parser'),
+const cookieParser = require('cookie-parser')
+
 connectDB = require('./config/db')
 
 const app = express()
@@ -11,9 +12,12 @@ app.set('view engine', 'ejs')
 // Serves static assets from public folder
 app.use(express.static(__dirname + 'public'));
 
+// for parsing httpOnly cookies
+app.use(cookieParser())
+
 // Allows app to parse json data
 app.use(express.json());
-app.use(bodyParser.urlencoded({ extended: false })) 
+app.use(express.urlencoded({ extended: false })) 
 
 //Register routes
 app.use('/recipes', require('./routes/recipe'))
