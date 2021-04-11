@@ -18,8 +18,8 @@ const recipeSchema = new mongoose.Schema({
         amount: Number,
         measurement: String
       }
-  ]
-  }
+    ] 
+  } 
 })
 
 module.exports = mongoose.model('recipe', recipeSchema)
