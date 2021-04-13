@@ -1,0 +1,23 @@
+<div id="recipeInput">
+    <form action="/calculate" method="POST">
+      <label for="recipeList">Recipe</label>
+
+      <select name="recipeList" id="recipeSelector">
+        <% DBrecipes.forEach(recipe=> { %>
+          <% console.log(recipe) %> 
+          <option value=<%=recipe.title%> > <%=recipe.title%></option>
+          <% });%>
+      </select>
+
+      <label for="recipeList">Batch size</label>
+      <input name="amount" type="number">
+      <select name="metric" id="unitSelector">
+        <% DBrecipes.forEach(recipe=> { %>
+          <% });%>
+        <option value="bars">Bars</option>
+        <option value="bars">Pounds</option>
+        <option value="bars">Ounces</option>
+      </select>
+      <button type="submit" class="btn btn-info">Generate Recipe!</button>
+    </form>
+  </div>

@@ -1,0 +1,154 @@
+
+<head>
+    <title>Recipe Maker</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link href="./main.css" rel="stylesheet" type="text/css" media="all">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="scripts.js"></script>
+</head>
+
+
+<div class="modifyRecipe container" id="recipeEdit">
+    <h2>Edit Ingredients</h2>
+    <form action="edit/_id" method="POST">
+        <div class="row">
+            <h4>Recipe Name:</h4>
+        </div>
+        <input style="width: 50%;" value="<%= recipe.title %>" type=text>
+        <h4>Main Ingredients</h4>
+        <div class="container justify-content-center" id="editableIngredientList">
+            <div id="listTitles" class="row">
+                <div class="col">
+                    <h5>Ingredient</h5>
+                </div>
+                <div class="col">
+                    <h5>Amount</h5>
+                </div>
+                <div class="col">
+                    <h5>Actions</h5>
+                </div>
+            </div>
+            
+            <% recipe.ingredients.forEach(main => { %>
+                <div class="row editableIngredientListItem" id="mainListItem<%= main.name %>">
+                    <div class="col">
+                        <input type="text" name="title" value="<% main.name %>">
+                    </div>
+                    <div class="col">
+                        <input type="number" name="amount" value="<% main.amount %>">
+                        <select name="measurement" value=<% main.measurment %>>
+                            <option value="teaspoon">Teaspoons</option>
+                            <option selected="selected" value="tablespoons">Tablespoons</option>
+                            <option value="bars">Bars</option>
+                            <option value="pounds">Pounds</option>
+                            <option value="ounces">Ounces</option>
+                        </select>
+                    </div>
+                    <div class="col">
+                        <button type="button" class="btn btn-warning" onclick="$(mainListItem<%= main.name %>).remove()"><img width=5% src="/icons/delete.png"></button>
+                        <button type="button" class="btn btn-warning" onclick="duplicateRow('main','<%= main.name %>')"><img width=5% src="/icons/duplicate.png"></button>
+                    </div>
+                    <hr>
+                </div>
+            <% }); %>
+            <span id="mainEnd"></span>
+            <div class="row addIngredientBtn">
+                <button type="button" class="btn-primary" onclick="addRow('main')">Add Main Ingredient</button>
+            </div>
+
+           <!-- Blend ingredients -->
+           <h4>Blend Ingredients</h4>
+           <div class="container justify-content-center" id="editableIngredientList">
+               <div id="listTitles" class="row">
+                   <div class="col">
+                       <h5>Ingredient</h5>
+                   </div>
+                   <div class="col">
+                       <h5>Amount</h5>
+                   </div>
+                   <div class="col">
+                       <h5>Actions</h5>
+                   </div>
+               </div>
+               
+               <% recipe.ingredients.forEach(blend => { %>
+                   <div class="row editableIngredientListItem" id="blendListItem">
+                       <div class="col">
+                           <input type="text" name="title" value="<% blend.name %>">
+                       </div>
+                       <div class="col">
+                           <input type="number" name="amount" value="<% blend.amount %>">
+                           <select name="measurement" value="<% blend.measurment %>">
+                               <option value="teaspoon">Teaspoons</option>
+                               <option selected="selected" value="tablespoons">Tablespoons</option>
+                               <option value="grams">Grams</option>
+                               <option value="cups">Cups</option>
+                               <option value="gallons">Gallons</option>
+                           </select>
+                       </div>
+                       <div class="col">
+                           <button class="btn btn-warning"><img width=5% src="/icons/delete.png"></button>
+                           <button class="btn btn-warning"><img width=5% src="/icons/duplicate.png"></button>
+                       </div>
+                       <hr>
+                   </div>
+                <% }); %>
+                <span id="blendEnd"></span>
+                <div class="row addIngredientBtn">
+                    <button type="button" class="btn-primary" onclick="addRow('blend')">Add Blend Ingredient</button>
+                </div>
+           <button type="submit">Save Edits</button>
+    </form>
+    <script src="scripts.js"></script>
+    <script>
+    let newMainCount = 0;
+    let newBlendCount = 0; 
+    let addRow = (ingredientType) => {
+        let newRow = document.createElement("div")
+        newRow.classList.add("row","editableIngredientListItem");
+        let newIngredientHTML = `
+        <div class="row editableIngredientListItem" id="${(ingredientType === "main") ? "main" : "blend"}listItem${(ingredientType === "main") ? newMainCount : newBlendCount}">
+        <div class="col">
+            <input type="text" name="title">
+        </div>
+        <div class="col">
+        <input type="number" name="amount" value=0>
+        <select name="measurement">
+            <option value="teaspoon">Teaspoons</option>
+            <option selected="selected" value="tablespoons">Tablespoons</option>
+            <option value="bars">Bars</option>
+            <option value="pounds">Pounds</option>
+            <option value="ounces">Ounces</option>
+        </select>
+        </div>
+        <div class="col">
+            <button type="button" class="btn btn-warning" onclick="$(${(ingredientType === "main") ? "main" : "blend"}listItem${(ingredientType === "main") ? newMainCount : newBlendCount}).remove()"><img width=5% src="/icons/delete.png"></button>
+            <button type="button" class="btn btn-warning" onclick="duplicateRow('"${(ingredientType === "main") ? "main" : "blend"}, '${(ingredientType === "main") ? "main" : "blend"}listItem${(ingredientType === "main") ? newMainCount : newBlendCount}.name %>')"><img width=5% src="/icons/duplicate.png"></button>
+        </div>
+        <hr>
+    </div>
+        `
+        $(newRow).append(newIngredientHTML);
+        if (ingredientType === "main") {
+            newMainCount++;
+            $("#mainEnd").before(newRow);
+        } else if (ingredientType === "blend") {
+            newBlendCount++
+            $("#blendEnd").before(newRow);
+        } else console.log("invalid argument passed into addrow()")
+        }     
+    let duplicateRow = (ingredientType, rowId) => {
+        if (ingredientType === "main") {
+            newMainCount++;
+            let element = $(`#mainListItem${rowId}`).clone().prop('id', `mainListItem${newMainCount}`);
+            $("#mainEnd").before(element);
+        } else {
+            newBlendCount++;
+            let element = $(`#blandListItem${rowId}`).clone().prop('id', `blendListItem${newMainCount}`);
+            $("#blendEnd").before(element);
+        }
+    }
+        </script>
+</div>

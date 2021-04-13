@@ -1,0 +1,96 @@
+<!-- Create Modal -->
+
+<head>
+    <title>Recipe Maker</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link href="./main.css" rel="stylesheet" type="text/css" media="all">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+</head>
+
+
+<div class="modifyRecipe container" id="recipeEdit">
+    <h2>Edit Ingredients</h2>
+    <form action="edit/_id" method="POST">
+        <div class="row">
+            <h4>Recipe Name:</h4>
+        </div>
+        <input style="width: 50%;" value="<%= recipe.title %>" type=text>
+        <h4>Main Ingredients</h4>
+        <div class="container justify-content-center" id="editableIngredientList">
+            <div id="listTitles" class="row">
+                <div class="col">
+                    <h5>Ingredient</h5>
+                </div>
+                <div class="col">
+                    <h5>Amount</h5>
+                </div>
+                <div class="col">
+                    <h5>Actions</h5>
+                </div>
+            </div>
+            
+            <% recipe.ingredients.forEach(main => { %>
+                <div class="row editableIngredientListItem">
+                    <div class="col">
+                        <input type="text" name="title" value="<% main.name %>">
+                    </div>
+                    <div class="col">
+                        <input type="number" name="amount" value="<% main.amount %>">
+                        <select name="measurement" value=<% main.measurment %>>
+                            <option value="teaspoon">Teaspoons</option>
+                            <option selected="selected" value="tablespoons">Tablespoons</option>
+                            <option value="grams">Grams</option>
+                            <option value="cups">Cups</option>
+                            <option value="gallons">Gallons</option>
+                        </select>
+                    </div>
+                    <div class="col">
+                        <button class="btn btn-warning"><img width=75% src="icons/delete.png"></button>
+                        <button class="btn btn-warning"><img width=75% src="icons/duplicate.png"></button>
+                    </div>
+                </div>
+                <hr>
+            <% }); %>
+
+           <!-- Blend ingredients -->
+           <h4>Blend Ingredients</h4>
+           <div class="container justify-content-center" id="editableIngredientList">
+               <div id="listTitles" class="row">
+                   <div class="col">
+                       <h5>Ingredient</h5>
+                   </div>
+                   <div class="col">
+                       <h5>Amount</h5>
+                   </div>
+                   <div class="col">
+                       <h5>Actions</h5>
+                   </div>
+               </div>
+               
+               <% recipe.ingredients.forEach(blend => { %>
+                   <div class="row editableIngredientListItem">
+                       <div class="col">
+                           <input type="text" name="title" value="<% blend.name %>">
+                       </div>
+                       <div class="col">
+                           <input type="number" name="amount" value="<% blend.amount %>">
+                           <select name="measurement" value="<% blend.measurment %>">
+                               <option value="teaspoon">Teaspoons</option>
+                               <option selected="selected" value="tablespoons">Tablespoons</option>
+                               <option value="grams">Grams</option>
+                               <option value="cups">Cups</option>
+                               <option value="gallons">Gallons</option>
+                           </select>
+                       </div>
+                       <div class="col">
+                           <button class="btn btn-warning"><img width=75% src="icons/delete.png"></button>
+                           <button class="btn btn-warning"><img width=75% src="icons/duplicate.png"></button>
+                       </div>
+                   </div>
+                   <hr>
+               <% }); %>
+           
+    </form>
+
+</div>
