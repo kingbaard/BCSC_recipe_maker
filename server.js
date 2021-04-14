@@ -3,6 +3,7 @@ require('dotenv').config()
 router = require("./routes/index")
 const cookieParser = require('cookie-parser')
 const  connectFlash = require("connect-flash")
+const expressSession = require('express-session')
 
 connectDB = require('./config/db')
 
@@ -21,6 +22,21 @@ app.use(cookieParser())
 app.use(express.json());
 app.use(express.urlencoded({ extended: false })) 
 
+app.use(
+  expressSession({
+    secret: "secret_passcode",
+    cookie: {
+      maxAge: 4000000
+    },
+    resave: false,
+    saveUninitialized: false
+  })
+);
+app.use(connectFlash())
+app.use((req, res, next) => {
+  res.locals.flashMessages = req.flash();
+  next();
+});
 //Register routes
 app.use('/recipes', require('./routes/recipe'))
 app.use('/auth', require('./routes/auth'))
@@ -31,10 +47,6 @@ app.use('/auth', require('./routes/auth'))
 // })
 
 //Connecting Flash message support
-app.use((req, res, next) => {
-  res.locals.flashMessages = req.flash();
-  next();
-});
 
 app.use("/", router)
 // Server listens on port 5000

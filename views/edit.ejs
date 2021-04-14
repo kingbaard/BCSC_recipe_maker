@@ -3,16 +3,16 @@
     <title>Recipe Maker</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <link href="./main.css" rel="stylesheet" type="text/css" media="all">
+    <link href="/styles.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <script src="scripts.js"></script>
 </head>
 
-<div id="backButton">
-    <a class="btn-outline-danger" href="index"
-</div>
 <div class="modifyRecipe container" id="recipeEdit">
+    <div id="backButton">
+        <a class="btn btn-outline-danger" href="index">back</a>
+    </div>
     <h2>Edit Ingredients</h2>
     <div class="flashes">
         <% if (flashMessages) { %>
@@ -32,7 +32,7 @@
             <h4>Recipe Name:</h4>
         </div>
         <input style="width: 50%;" value="<%= recipe.title %>" type=text>
-        <h4>Main Ingredients</h4>
+        <h4>Main Ingredients:</h4>
         <div class="container justify-content-center" id="editableIngredientList">
             <div id="listTitles" class="row">
                 <div class="col">
@@ -62,8 +62,8 @@
                         </select>
                     </div>
                     <div class="col">
-                        <button type="button" class="btn btn-warning" onclick="$(mainListItem<%= main.name %>).remove()"><img width=5% src="/icons/delete.png"></button>
-                        <button type="button" class="btn btn-warning" onclick="duplicateRow('main','<%= main.name %>')"><img width=5% src="/icons/duplicate.png"></button>
+                        <button type="button" class="btn btn-warning" onclick="$(mainListItem<%= main.name %>).remove()"><img width=150% src="/icons/delete.png"></button>
+                        <button type="button" class="btn btn-warning" onclick="duplicateRow('main','<%= main.name %>')"><img width=150% src="/icons/duplicate.png"></button>
                     </div>
                     <hr>
                 </div>
@@ -72,9 +72,9 @@
             <div class="row addIngredientBtn">
                 <button type="button" class="btn-primary" onclick="addRow('main')">Add Main Ingredient</button>
             </div>
-
+        </div>
            <!-- Blend ingredients -->
-           <h4>Blend Ingredients</h4>
+           <h4>Blend Ingredients:</h4>
            <div class="container justify-content-center" id="editableIngredientList">
                <div id="listTitles" class="row">
                    <div class="col">
@@ -114,6 +114,7 @@
                 <div class="row addIngredientBtn">
                     <button type="button" class="btn-primary" onclick="addRow('blend')">Add Blend Ingredient</button>
                 </div>
+            </div>
            <button type="submit">Save Edits</button>
     </form>
     <script src="scripts.js"></script>
