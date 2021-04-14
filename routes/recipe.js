@@ -23,7 +23,7 @@ router.post('/addrecipe',   recipeController.addRecipe)
 router.get('/:id/edit',   recipeController.viewEdit)
 router.post('/:id/edit', recipeController.getRecipe)
 
-router.get('/:id',   recipeController.getRecipe)
+router.get('/:id', recipeController.show,  recipeController.showView)
 router.delete('/:id',   recipeController.deleteRecipe)
 
 module.exports = router

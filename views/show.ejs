@@ -9,67 +9,22 @@
 </br>
 </br>
 <div id="recipeIndex" class="container">
-  <div id=searchBar class="row">
-    <img class="col-1" height="100%" src="icons/search.png">
-    <input  class="col" type="text" id="searchBar" onkeyup="myFunction()" placeholder="Recipe Search">
-  </div>
-  <ul id="recipeList">
-  <% recipeList.forEach(recipe => { %>
-    <li class="recipeIndexItem row">
-      <a href="#" class="col">
-        <%= recipe.title >
-      </a>
-    </li>
-    <% }); %>
-        <button class="btn btn-warning col-2">Edit</button>
-      <li class="recipeIndexItem row">
-        <a href="#" class="col">Autumn Pumpkin Bath Bomb</a>
-        <button class="btn btn-warning col-2">Edit</button>
-      </li class="recipeIndexItem">
-      <li class="recipeIndexItem row">
-        <a href="#" class="col">BREATH Shower Steamer</a>
-        <button class="btn btn-warning col-2">Edit</button>
-      </li class="recipeIndexItem">
-      <li class="recipeIndexItem row">
-        <a href="#" class="col">Brown Sugar Fig Goat's Milk Bar</a>
-        <button class="btn btn-warning col-2">Edit</button>
-      </li class="recipeIndexItem">
-      <li class="recipeIndexItem row">
-        <a href="#" class="col">Lemongrass Calendula Designer Bar</a>
-        <button class="btn btn-warning col-2">Edit</button>
-      </li class="recipeIndexItem">
-      <li class="recipeIndexItem row">
-        <a href="#" class="col">Luna Designer Soap</a>
-        <button class="btn btn-warning col-2">Edit</button>
-      </li class="recipeIndexItem">
-      <li class="recipeIndexItem row">
-        <a href="#" class="col">Oats, Milk & Honey Goat's Milk Soap</a>
-        <button class="btn btn-warning col-2">Edit</button>
-      </li class="recipeIndexItem">
-    </ul>
-    
-</div>
 
-<script>
-    function myFunction() {
-      // Declare variables
-      var input, filter, ul, li, a, i, txtValue;
-      input = document.getElementById('searchBarInput');
-      filter = input.value.toUpperCase();
-      ul = document.getElementById("recipeIndex");
-      li = ul.getElementsByTagName('li');
-    
-      // Loop through all list items, and hide those who don't match the search query
-      for (i = 0; i < li.length; i++) {
-        a = li[i].getElementsByTagName("a")[0];
-        txtValue = a.textContent || a.innerText;
-        if (txtValue.toUpperCase().indexOf(filter) > -1) {
-          li[i].style.display = "";
-        } else {
-          li[i].style.display = "none";
-        }
-      }
-    }
-    </script>
+    <h1><%= recipe.title %></h1>
+    <label for=amount>Batches</label>
+    <input type=number name=amount>
+    <h3>Main Ingredients</h3>
+    <table>
+      <tr>
+        <th>Ingredient</th>
+        <th>Amount</th>
+      </tr>
+      <% recipe.ingredients.forEach(ingredient => { %>
+      <tr>
+        <td><%= ingredient.name %></td>
+        <td><%= ingredient.amount %> <%= ingredient.measurement %></td>
+      </tr>
+        <% }) %>
+    </table>
 
-    </html>
+</html>

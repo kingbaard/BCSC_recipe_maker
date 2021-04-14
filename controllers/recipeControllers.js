@@ -21,8 +21,26 @@ exports.getRecipe = async(req, res) =>{
 }
 
 // @Method  GET
+exports.show = (req, res, next) => {
+  let recipeId = req.params.id;
+  Recipe.findById(recipeId)
+    .then(recipe => {
+      res.locals.recipe = recipe;
+      next();
+    })
+    .catch(e => {
+      console.log(`Error fetching recipe by ID: ${e.message}`);
+      next(e);
+    });
+},
+
+exports.showView = (req, res, next) => {
+  res.render("show")
+}
+
+// @Method  GET
 exports.addRecipeIndex = async(req, res) =>{
-  res.send('add recipe page')
+  res.render('create')
 }
 
 // @Method  POST

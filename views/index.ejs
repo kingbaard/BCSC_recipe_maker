@@ -13,7 +13,9 @@
     integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl"
     crossorigin="anonymous">
     <link href="/styles.css" rel="stylesheet">
-    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0"
+    crossorigin="anonymous"></script>
     <title>BCSC</title>
   </head>
   
@@ -32,6 +34,8 @@
                 <%= recipe.title %>
                 <a href="/recipes/<%= recipe._id %>/edit"><button class="btn btn-warning col">Edit</button>
                 </a>
+                <button data-toggle="modal"  data-target=".deleteConfirmation" class="btn btn-danger col">Delete</button>
+                
             </li>
             
             <% }); %>
@@ -40,7 +44,7 @@
         <!-- Menu -->
         <div class="container">
           <div id="newRecipeButton">
-            <a class="btn-success row" href="addrecipe">
+            <a class="btn-success row" href="/recipes/addrecipe">
               <button onclick="">Add new recipe</button>
             </a>
           </div>
@@ -56,6 +60,15 @@
       <script src="scripts.js"></script>
       
       
+      <div class="modal fade deleteConfirmation" tabindex="-1" role="dialog" aria-labelledby="deleteConfirmation" aria-hidden="true">
+        <div class="modal-dialog modal-sm">
+          <div class="modal-content">
+            <h3>Are you sure you want to delete this recipe?</h3>
+            <button type="button" >Cancel</button>
+            <button type="button" >Delete</button>
+          </div>
+        </div>
+      </div>
       
       
       
@@ -66,8 +79,7 @@
       
       
       
-      
-      <!-- View Modal -->
+      <!-- Deletion Confirmation Modal -->
       <div id="viewModal" class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg">
           <div class="modal-content">
