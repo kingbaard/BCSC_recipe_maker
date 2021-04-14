@@ -22,20 +22,20 @@
   <body>
     <div class="content">
       <div id="recipeIndex" class="container">
-      <h1 class="text-center">Recipe Helper</h1>
-      <div class="flashes">
-        <% if (flashMessages) { %>
-        <% if (flashMessages.success) { %>
-        <div class="flash success">
-          <%= flashMessages.success %>
+        <h1 class="text-center">Recipe Helper</h1>
+        <div class="flashes">
+          <% if (flashMessages) { %>
+          <% if (flashMessages.success) { %>
+          <div class="flash success">
+            <%= flashMessages.success %>
+          </div>
+          <% } else if (flashMessages.error) { %>
+          <div class="flash error">
+            <%= flashMessages.error %>
+          </div>
+          <% } %>
+          <% } %>
         </div>
-        <% } else if (flashMessages.error) { %>
-        <div class="flash error">
-          <%= flashMessages.error %>
-        </div>
-        <% } %>
-        <% } %>
-      </div>
         <div id=searchBarBox class="row">
           <img class="col-1" height="100%" src="icons/search.png">
           <input  class="col" type="text" id="searchBarInput" onkeyup="dynamicSearch()" placeholder="Recipe Search">
@@ -45,15 +45,16 @@
             <li class="recipeIndexItem row">
               <a href="/recipes/<%= recipe._id %>" class="col">
                 <%= recipe.title %>
-                <a href="/recipes/<%= recipe._id %>/edit"><button class="btn btn-warning col">Edit</button>
-                </a>
-                <button data-toggle="modal"  data-target=".deleteConfirmation" class="btn btn-danger col">Delete</button>
-                
+                <div class="col indexItemMenu">
+                  <a href="/recipes/<%= recipe._id %>/edit"><button class="btn btn-warning">Edit</button>
+                  </a>
+                  <button data-toggle="modal"  data-target=".deleteConfirmation" class="btn btn-danger col">Delete</button>
+                  
+                </div>
             </li>
             
             <% }); %>
           </ul>
-        </div>
         <!-- Menu -->
         <div class="container">
           <div id="newRecipeButton">

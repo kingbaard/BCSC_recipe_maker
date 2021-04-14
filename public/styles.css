@@ -39,6 +39,9 @@
     padding: 1rem;
   }
 
+  .addIngredientBtn {
+    width: 100%;
+  }
   /* toggle switch stuff */
 
   .switch {
@@ -119,7 +122,7 @@ ol, ul {
 
     #searchBarBox {
         width: 100%; 
-        font-size: 16px; 
+        font-size: 2.5vw; 
         padding: 12px 40px 12px 40px; 
         border: 3px solid #ddd; 
         margin-left: auto;
@@ -180,7 +183,7 @@ ol, ul {
       align-items: center;
     }
   
-    #editableIngredientList {
+    .editableIngredientList {
       padding: 1em;
       width: 50%;
       background-color: rgba(127, 255, 212, 0.445);
@@ -191,8 +194,8 @@ ol, ul {
       margin-right: auto;
     }
   
-    #editableIngredientList input[for="amount"]{
-      width: 70px;
+    .editableIngredientList input[for="amount"]{
+      width: 50%;
     }
   
     .modifyRecipe button{

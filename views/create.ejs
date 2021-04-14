@@ -28,12 +28,12 @@
         <% } %>
       </div>
     <form action="/recipes/addrecipe" method="POST">
-        <div class="row">
-            <h4>Recipe Name:</h4>
-        </div>
-        <input style="width: 50%;" placeholder="New Recipe" type=text>
-        <h4>Main Ingredients</h4>
         <div class="container justify-content-center" id="editableIngredientList">
+            <div class="row">
+                <h4>Recipe Name:</h4>
+            </div>
+            <input style="width: 50%;" placeholder="New Recipe" type=text>
+            <h4>Main Ingredients</h4>
             <div id="listTitles" class="row">
                 <div class="col">
                     <h5>Ingredient</h5>
@@ -46,7 +46,8 @@
                 </div>
             </div>
             
-            <div class="row editableIngredientListItem" id="mainListItem0">
+            <div class="row" id="mainListItem0">
+                <div class="editableIngredientListItem">
                 <div class="col">
                     <input type="text" name="title" placeholder="New Ingredient">
                 </div>
@@ -65,12 +66,13 @@
                     <button type="button" class="btn btn-warning" onclick="$(mainListItem0).remove()"><img width=5% src="/icons/delete.png"></button>
                     <button type="button" class="btn btn-warning" onclick="duplicateRow('main','0')"><img width=5% src="/icons/duplicate.png"></button>
                 </div>
+            </div>
                 <hr>
             </div>
 
             <span id="mainEnd"></span>
-            <div class="row addIngredientBtn">
-                <button type="button" class="btn-primary" onclick="addRow('main')">Add Main Ingredient</button>
+            <div class="row">
+                <button type="button" class="btn btn-primary addIngredientBtn" onclick="addRow('main')">Add Main Ingredient</button>
             </div>
             <label for=hasBlend class="switch">Include Blend
                 <input type="checkbox" name=hasBlend id=hasBlend>
