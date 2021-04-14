@@ -21,8 +21,21 @@
   
   <body>
     <div class="content">
-      <h1 class="text-center">Recipe Helper</h1>
       <div id="recipeIndex" class="container">
+      <h1 class="text-center">Recipe Helper</h1>
+      <div class="flashes">
+        <% if (flashMessages) { %>
+        <% if (flashMessages.success) { %>
+        <div class="flash success">
+          <%= flashMessages.success %>
+        </div>
+        <% } else if (flashMessages.error) { %>
+        <div class="flash error">
+          <%= flashMessages.error %>
+        </div>
+        <% } %>
+        <% } %>
+      </div>
         <div id=searchBarBox class="row">
           <img class="col-1" height="100%" src="icons/search.png">
           <input  class="col" type="text" id="searchBarInput" onkeyup="dynamicSearch()" placeholder="Recipe Search">

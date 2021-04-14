@@ -18,7 +18,7 @@ const router = express.Router()
 router.get('/',   recipeController.viewIndex)
 
 router.get('/addrecipe',   recipeController.addRecipeIndex)
-router.post('/addrecipe',   recipeController.addRecipe)
+router.post('/addrecipe',   recipeController.createRecipe, recipeController.viewIndex)
 
 router.get('/:id/edit',   recipeController.viewEdit)
 router.post('/:id/edit', recipeController.getRecipe)

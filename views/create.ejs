@@ -8,10 +8,26 @@
     <script src="scripts.js"></script>
 </head>
 
+<div id="backButton">
+    <a class="btn-outline-danger" href="/">Back</a>
+</div>
 
 <div class="modifyRecipe container" id="recipeEdit">
     <h2>Create New Recipe</h2>
-    <form action="edit/_id" method="POST">
+    <div class="flashes">
+        <% if (flashMessages) { %>
+        <% if (flashMessages.success) { %>
+        <div class="flash success">
+          <%= flashMessages.success %>
+        </div>
+        <% } else if (flashMessages.error) { %>
+        <div class="flash error">
+          <%= flashMessages.error %>
+        </div>
+        <% } %>
+        <% } %>
+      </div>
+    <form action="/recipes/addrecipe" method="POST">
         <div class="row">
             <h4>Recipe Name:</h4>
         </div>

@@ -59,6 +59,29 @@ exports.addRecipe = async(req, res) =>{
   })
 }
 
+exports.createRecipe = async(req, res) => {
+  let recipeParams = {
+    servings: req.body.servings,
+    title: req.body.title,
+    ingredients: [req.body.ingredients.split(",")],
+    blends: req.body.blends
+  };
+  Recipe.create(recipeParams)
+    .then(recipe => {
+      if (recipe) {
+        req.flash("sucess", "New recipe sucessfully added to database!")
+      } else {
+        req.flash("error", "Something went wrong and we were unable to add recipe to database.")
+      }
+      res.locals.recipe = recipe;
+      next();
+    })
+    .catch(error => {
+      console.log(`Error saving course: ${error.message}`);
+      next(error);
+    });
+}
+
 // @Method  GET
 exports.editRecipe = async(req, res) =>{
   let recipeId = req.params.id

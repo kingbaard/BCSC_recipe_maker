@@ -2,6 +2,7 @@ const express = require('express')
 require('dotenv').config()
 router = require("./routes/index")
 const cookieParser = require('cookie-parser')
+const  connectFlash = require("connect-flash")
 
 connectDB = require('./config/db')
 
@@ -28,6 +29,12 @@ app.use('/auth', require('./routes/auth'))
 // app.get('/', (req,res) =>{
 //   res.render('index')
 // })
+
+//Connecting Flash message support
+app.use((req, res, next) => {
+  res.locals.flashMessages = req.flash();
+  next();
+});
 
 app.use("/", router)
 // Server listens on port 5000

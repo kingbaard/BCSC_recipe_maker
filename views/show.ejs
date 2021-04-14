@@ -9,6 +9,19 @@
 </br>
 </br>
 <div id="recipeIndex" class="container">
+  <div class="flashes">
+    <% if (flashMessages) { %>
+    <% if (flashMessages.success) { %>
+    <div class="flash success">
+      <%= flashMessages.success %>
+    </div>
+    <% } else if (flashMessages.error) { %>
+    <div class="flash error">
+      <%= flashMessages.error %>
+    </div>
+    <% } %>
+    <% } %>
+  </div>
 
     <h1><%= recipe.title %></h1>
     <label for=amount>Batches</label>
