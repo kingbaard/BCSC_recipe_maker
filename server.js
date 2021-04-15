@@ -4,16 +4,21 @@ router = require("./routes/index")
 const cookieParser = require('cookie-parser')
 const  connectFlash = require("connect-flash")
 const expressSession = require('express-session')
+const favicon = require('serve-favicon')
+const path = require('path')
 
 connectDB = require('./config/db')
 
 const app = express()
+// Serves static assets from public folder
+app.use(express.static('public'));
+
+// Sets favicon for every view
+// app.use(favicon('public/icons'))
 
 // sets view engine to ejs
 app.set('view engine', 'ejs')
 
-// Serves static assets from public folder
-app.use(express.static('public'));
 
 // for parsing httpOnly cookies
 app.use(cookieParser())

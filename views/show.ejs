@@ -2,10 +2,22 @@
 <head>
     <title>Recipe Helper</title>
     <meta charset="utf-8">
+    <script
+  src="https://code.jquery.com/jquery-3.6.0.js"
+  integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
+  crossorigin="anonymous"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <link href="./main.css" rel="stylesheet" type="text/css" media="all">
+    <link rel="apple-touch-icon" sizes="180x180" href="/icons/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/icons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/icons/favicon-16x16.png">
+  <link rel="manifest" href="icons/site.webmanifest">
+    <link href="/styles.css" rel="stylesheet" type="text/css" media="all">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
 </head>
+<script>
+  let ingredients = [];
+  let ingredientCount = 0;
+</script>
 </br>
 </br>
 <div id="recipeIndex" class="container">
@@ -28,7 +40,7 @@
 
     <h1><%= recipe.title %></h1>
     <label for=amount>Batches</label>
-    <input type=number name=amount>
+    <input type=number name=amount value=1>
     <h3>Main Ingredients</h3>
     <table>
       <tr>
@@ -37,10 +49,30 @@
       </tr>
       <% recipe.ingredients.forEach(ingredient => { %>
       <tr>
+        <script>
+          ingredients.push([`<%= ingredient.name %>`, `<%= ingredient.amount %>`]);
+          ingredientCount++; 
+        </script>
         <td><%= ingredient.name %></td>
-        <td><%= ingredient.amount %> <%= ingredient.measurement %></td>
+        <td><input class="amountView" id="amountView<%= ingredient.name %>" value="<%= ingredient.amount %>" disabled> </td>
+        <td><input class="measurementView" id="measurementView<%= ingredient.name %>" value="<%= ingredient.measurement %>" disabled> </td>
+      </tr>
+      <tr>
       </tr>
         <% }) %>
     </table>
-
+<script>
+  let batchValue = 0;
+  $("input[type=number]").change(function() {
+    batchValue = $("input[name=amount]").val();
+    updateAmounts();
+  })
+  let updateAmounts = function() {
+    console.log(ingredients)
+    ingredients.forEach(ingredient => {
+      console.log(ingredient)
+      $('#amountView'+ingredient[0]).attr("value", ingredient[1]*batchValue)
+    })
+  }
+</script>
 </html>
