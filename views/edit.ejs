@@ -11,7 +11,7 @@
 
 <div class="modifyRecipe container" id="recipeEdit">
     <div id="backButton">
-        <a class="btn btn-outline-danger" href="index">back</a>
+        <a class="btn btn-outline-danger" href="/">back</a>
     </div>
     <h2>Edit Ingredients</h2>
     <div class="flashes">
@@ -49,10 +49,10 @@
             <% recipe.ingredients.forEach(main => { %>
                 <div class="row editableIngredientListItem" id="mainListItem<%= main.name %>">
                     <div class="col">
-                        <input type="text" name="title" value="<% main.name %>">
+                        <input type="text" name="title" value="<%= main.name %>">
                     </div>
                     <div class="col">
-                        <input type="number" name="amount" value="<% main.amount %>">
+                        <input type="number" name="amount" value="<%= main.amount %>">
                         <select name="measurement" value=<% main.measurment %>>
                             <option value="teaspoon">Teaspoons</option>
                             <option selected="selected" value="tablespoons">Tablespoons</option>
@@ -91,11 +91,11 @@
                <% recipe.ingredients.forEach(blend => { %>
                    <div class="row editableIngredientListItem" id="blendListItem">
                        <div class="col">
-                           <input type="text" name="title" value="<% blend.name %>">
+                           <input type="text" name="title" value="<%= blend.name %>">
                        </div>
                        <div class="col">
-                           <input type="number" name="amount" value="<% blend.amount %>">
-                           <select name="measurement" value="<% blend.measurment %>">
+                           <input type="number" name="amount" value="<%= blend.amount %>">
+                           <select name="measurement" value="<%= blend.measurment %>">
                                <option value="teaspoon">Teaspoons</option>
                                <option selected="selected" value="tablespoons">Tablespoons</option>
                                <option value="grams">Grams</option>
@@ -117,6 +117,7 @@
             </div>
            <button type="submit">Save Edits</button>
     </form>
+
     <script src="scripts.js"></script>
     <script>
     let newMainCount = 0;

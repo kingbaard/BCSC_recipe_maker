@@ -15,15 +15,15 @@ const router = express.Router()
 // router.get('/:id', auth, recipeController.getRecipe)
 // router.delete('/:id', auth, recipeController.deleteRecipe)
 
-router.get('/',   recipeController.viewIndex)
+router.get('/', recipeController.viewIndex)
 
-router.get('/addrecipe',   recipeController.addRecipeIndex)
-router.post('/addrecipe',   recipeController.createRecipe, recipeController.viewIndex)
+router.get('/addrecipe', recipeController.addRecipeIndex)
+router.post('/addrecipe', recipeController.createRecipe, recipeController.viewIndex)
 
-router.get('/:id/edit',   recipeController.viewEdit)
+router.get('/:id/edit', recipeController.viewEdit)
 router.post('/:id/edit', recipeController.getRecipe)
 
 router.get('/:id', recipeController.show,  recipeController.showView)
-router.delete('/:id',   recipeController.deleteRecipe)
+router.post('/delete/:id', recipeController.deleteRecipe)
 
 module.exports = router

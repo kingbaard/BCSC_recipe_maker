@@ -5,7 +5,7 @@
     <link href="/styles.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-    <script src="scripts.js"></script>
+    <script src="scripts.js" defer></script>
 </head>
 
 <div id="backButton">
@@ -16,10 +16,10 @@
     <h2>Create New Recipe</h2>
     <div class="flashes">
         <% if (flashMessages) { %>
-        <% if (flashMessages.success) { %>
-        <div class="flash success">
-          <%= flashMessages.success %>
-        </div>
+            <% if (flashMessages.success) { %>
+                <div class="flash success">
+                <%= flashMessages.success %>
+                </div>
         <% } else if (flashMessages.error) { %>
         <div class="flash error">
           <%= flashMessages.error %>
@@ -32,7 +32,7 @@
             <div class="row">
                 <h4>Recipe Name:</h4>
             </div>
-            <input style="width: 50%;" placeholder="New Recipe" type=text>
+            <input style="width: 50%;" placeholder="New Recipe" type=text name="title">
             <h4>Main Ingredients</h4>
             <div id="listTitles" class="row">
                 <div class="col">
@@ -49,10 +49,10 @@
             <div class="row" id="mainListItem0">
                 <div class="editableIngredientListItem">
                 <div class="col">
-                    <input type="text" name="title" placeholder="New Ingredient">
+                    <input type="text" name="ingredient" placeholder="New Ingredient">
                 </div>
                 <div class="col">
-                    <input type="number" name="amount" placehoder="Amount Value">
+                    <input type="number" name="amount" placeholder="Amount Value">
                     <select name="measurement" placeholder="Amount Measurement">
                         <option value="teaspoon">Teaspoons</option>
                         <option value="tablespoons">Tablespoons</option>
@@ -60,6 +60,8 @@
                         <option value="bars">Bars</option>
                         <option value="pounds">Pounds</option>
                         <option value="ounces">Ounces</option>
+                        <option value="Grams">Grams</option>
+                        <option value="Cups">Cups</option>
                     </select>
                 </div>
                 <div class="col">
@@ -71,16 +73,18 @@
             </div>
 
             <span id="mainEnd"></span>
+
             <div class="row">
                 <button type="button" class="btn btn-primary addIngredientBtn" onclick="addRow('main')">Add Main Ingredient</button>
             </div>
-            <label for=hasBlend class="switch">Include Blend
+
+            <!-- <label for=hasBlend class="switch">Include Blend
                 <input type="checkbox" name=hasBlend id=hasBlend>
-                <span class="slider round"></span>
-              </label>
-            <div id="blendSection" hidden>
+                <div class="slider round"></div>
+            </label> -->
 
 
+            <!-- <div id="blendSection" hidden>
                 <h4>Blend Ingredients</h4>
                 <div class="container justify-content-center" id="editableIngredientList">
                     <div id="listTitles" class="row">
@@ -122,10 +126,13 @@
                         <button type="button" class="btn-primary" onclick="addRow('blend')">Add Blend Ingredient</button>
                     </div>
                 </div>
-            </div>
-        <button type="submit">Save Edits</button>
+            </div> -->
+        <button type="submit" class="btn btn-primary">Add Recipe</button>
     </form>
-    <script src="scripts.js"></script>
+
+
+
+
     <script>
     let newMainCount = 0;
     let newBlendCount = 0; 
@@ -135,7 +142,7 @@
         let newIngredientHTML = `
         <div class="row editableIngredientListItem" id="${(ingredientType === "main") ? "main" : "blend"}listItem${(ingredientType === "main") ? newMainCount : newBlendCount}">
         <div class="col">
-            <input type="text" name="title">
+            <input type="text" name="ingredient">
         </div>
         <div class="col">
         <input type="number" name="amount" value=0>

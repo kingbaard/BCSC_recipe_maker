@@ -1,5 +1,5 @@
 const Recipe = require('../models/Recipe')
-const User = require('../models/User')
+var colors = require('colors')
 
 // @Method  GET
 exports.viewIndex = async(req, res) =>{
@@ -21,65 +21,58 @@ exports.getRecipe = async(req, res) =>{
 }
 
 // @Method  GET
-exports.show = (req, res, next) => {
+exports.show = async(req, res, next) => {
   let recipeId = req.params.id;
-  Recipe.findById(recipeId)
-    .then(recipe => {
+
+  try {
+    let recipe = await Recipe.findById(recipeId)
+    if(recipe){
       res.locals.recipe = recipe;
       next();
-    })
-    .catch(e => {
-      console.log(`Error fetching recipe by ID: ${e.message}`);
-      next(e);
-    });
-},
+    }
+  } catch (error) {
+    console.log(`Error fetching recipe by ID: ${error.message}`.bold.red);
+    next(error);
+  }
+}
 
 exports.showView = (req, res, next) => {
   res.render("show")
 }
 
 // @Method  GET
-exports.addRecipeIndex = async(req, res) =>{
+exports.addRecipeIndex = (req, res) =>{
+  console.log(req.body)
   res.render('create')
 }
 
-// @Method  POST
-// TODO ask about recipes with same name
-exports.addRecipe = async(req, res) =>{
-  const {
-    servings,
-    title,
-    ingredients,
-    blends
-  } = req.body  
-  const newRecipe = new Recipe({servings, title, ingredients, blends})
-  
-  await newRecipe.save().then(()=>{
-    res.send(newRecipe)
-  })
-}
 
 exports.createRecipe = async(req, res) => {
-  let recipeParams = {
-    servings: req.body.servings,
-    title: req.body.title,
-    ingredients: [req.body.ingredients.split(",")],
-    blends: req.body.blends
-  };
-  Recipe.create(recipeParams)
-    .then(recipe => {
-      if (recipe) {
-        req.flash("sucess", "New recipe sucessfully added to database!")
-      } else {
-        req.flash("error", "Something went wrong and we were unable to add recipe to database.")
-      }
-      res.locals.recipe = recipe;
-      next();
-    })
-    .catch(error => {
-      console.log(`Error saving course: ${error.message}`);
-      next(error);
-    });
+ 
+  console.log(req.body)
+  res.redirect('/')
+  // let recipeParams = {
+  //   servings: req.body.servings,
+  //   title: req.body.title,
+  //   ingredients: req.body.ingredient ? [req.body.ingredient.split(",")] : ""
+  //   // blends: req.body.blends
+  // };
+
+  // console.log(recipeParams)
+  // Recipe.create(recipeParams)
+  //   .then(recipe => {
+  //     if (recipe) {
+  //       req.flash("sucess", "New recipe sucessfully added to database!")
+  //     } else {
+  //       req.flash("error", "Something went wrong and we were unable to add recipe to database.")
+  //     }
+  //     res.locals.recipe = recipe;
+  //     next();
+  //   })
+  //   .catch(error => {
+  //     console.log(`Error saving course: ${error.message}`);
+  //     next(error);
+  //   });
 }
 
 // @Method  GET
