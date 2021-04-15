@@ -45,26 +45,25 @@
             <li class="recipeIndexItem row">
               <a href="/recipes/<%= recipe._id %>" class="col">
                 <%= recipe.title %>
-                <div class="col indexItemMenu">
-                  <a href="/recipes/<%= recipe._id %>/edit"><button class="btn btn-warning">Edit</button>
-                  </a>
-                  <button data-toggle="modal"  data-target=".deleteConfirmation" class="btn btn-danger col">Delete</button>
-                  
+                <div class="col-md-2 indexItemMenu">
+                  <a class="btn btn-outline-warning" href="/recipes/<%= recipe._id %>/edit">Edit </a>
+                  <a class="btn btn-outline-danger">Delete</a>
+                  <button data-toggle="modal"  data-target=".deleteConfirmation" class="btn btn-danger"  hidden></button>
                 </div>
             </li>
             
             <% }); %>
           </ul>
         <!-- Menu -->
-        <div class="container">
-          <div id="newRecipeButton">
-            <a class="btn-success row" href="/recipes/addrecipe">
-              <button onclick="">Add new recipe</button>
+        <div id="indexNav" class="container">
+          <div id="newRecipeButton row">
+            <a class="btn btn-success col-12" href="/recipes/addrecipe">
+              Add new recipe
             </a>
           </div>
-          <div id="helpButton">
-            <a class="btn-success row" href="addrecipe">
-              <button onclick="">Help Page</button>
+          <div id="helpButton row">
+            <a class="btn btn-success col-12" href="addrecipe">
+             Help Page
             </a>
           </div>
         </div>

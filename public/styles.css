@@ -152,6 +152,15 @@ ol, ul {
     #recipeIndex li a:hover:not(.header) {
       background-color: #eee; /* Add a hover effect to all links, except for headers */
     }
+
+    #indexNav a {
+      margin:0.25em;
+    }
+
+    .indexItemMenu{
+      align-items: flex-end;
+      text-align: left;
+    }
   
     .recipeIndexItem {
       margin-top: .25em;
@@ -167,12 +176,14 @@ ol, ul {
   
     .recipeIndexItem a {
       text-decoration: none; 
+      text-align: left;
       font-size: 20px; 
       color: black; 
     }
   
     .recipeIndexItem button {
-      align-content:flex-start;
+      align-content:flex-end;
+      text-align: left;
       margin-right: .5rem;
     }
   
