@@ -53,21 +53,22 @@
             <% recipe.ingredients.forEach(main => { %>
                 <div class="row editableIngredientListItem" id="mainListItem<% main.name %>">
                     <div class="col">
-                        <input type="text" name="title" value="<% main.name %>">
+                        <input type="text" name="title" value="<%= main.name %>">
                     </div>
                     <div class="col">
-                        <input type="number" name="amount" value="<% main.amount %>">
-                        <select name="measurement" value=<% main.measurment %>>
+                        <input type="number" name="amount" placeholder="Amt." value="<%= main.amount %>">
+                        <select name="measurement" value=<%= blend.measurement %>>
+                            <option value="" disabled selected>Measurement</option>
                             <option value="teaspoon">Teaspoons</option>
-                            <option selected="selected" value="tablespoons">Tablespoons</option>
+                            <option value="tablespoons">Tablespoons</option>
                             <option value="bars">Bars</option>
                             <option value="pounds">Pounds</option>
                             <option value="ounces">Ounces</option>
                         </select>
                     </div>
                     <div class="col">
-                        <button type="button" class="btn btn-warning" onclick="$(mainListItem<%= main.name %>).remove()"><img width=20% src="/icons/delete.png"></button>
-                        <button type="button" class="btn btn-warning" onclick="duplicateRow('main','<%= main.name %>')"><img width=20% src="/icons/duplicate.png"></button>
+                        <button type="button" class="btn btn-warning" onclick="$(mainListItem0).remove()"><img width=25% src="/icons/delete.png"></button>
+                        <button type="button" class="btn btn-warning" onclick="duplicateRow('main','0')"><img width=25% src="/icons/duplicate.png"></button>
                     </div>
                     <hr>
                 </div>

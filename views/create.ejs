@@ -35,7 +35,7 @@
             <div class="row">
                 <div class="row formSection" >
                     <span class="col-3 listItemTitle">Recipe Name:</span>
-                    <input class="col-12" style="width: 50%;" placeholder="New Recipe" type=text>
+                    <input class="col-9" placeholder="New Recipe" type=text>
                 </div>
                 <div class="container justify-content-center formSection">
                     <h5>Main Ingredients:</h5>
@@ -50,7 +50,7 @@
                             <h5>Actions</h5>
                         </div>
                     </div>
-                    
+                    <hr>
                         <div class="row editableIngredientListItem" id="mainListItem0">
                             <div class="col">
                                 <input type="text" name="title" placeholder="New Ingredient">
@@ -106,17 +106,17 @@
                             <h5>Actions</h5>
                         </div>
                     </div>
-                    
+                    <hr>
                     <div class="row" id="blendListItem0">
                         <div class="col">
                             <input type="text" name="title" placeholder="New Ingredient">
                         </div>
                         <div class="col">
-                            <input type="number" name="amount" placehoder="Amount Value">
-                            <select name="measurement" placeholder="Amount Measurement">
+                            <input type="number" name="amount" placeholder="Amt.">
+                            <select name="measurement" placeholder="Measurement">
+                                <option value="" disabled selected>Measurement</option>
                                 <option value="teaspoon">Teaspoons</option>
                                 <option value="tablespoons">Tablespoons</option>
-                                <option value="handfulls">handfulls</option>
                                 <option value="bars">Bars</option>
                                 <option value="pounds">Pounds</option>
                                 <option value="ounces">Ounces</option>
@@ -131,11 +131,13 @@
         
                     <span id="blendEnd"></span>
                     <div class="row addIngredientBtn">
-                        <button type="button" class="btn-primary" onclick="addRow('blend')">Add Blend Ingredient</button>
+                        <button type="button" class="col btn btn-primary" align="center" onclick="addRow('blend')">Add Blend Ingredient</button>
                     </div>
                 </div>
             </div>
-        <button class="btn btn-sucess" type="submit" value="Save Changes">Save Changes </button>
+
+            <!-- Form Submit -->
+        <button class="row btn btn-success" type="submit" value="Save Changes">Save Changes</button>
     </form>
     <script src="scripts.js"></script>
     <script>
