@@ -38,7 +38,7 @@ exports.show = async(req, res, next) => {
 
 exports.showView = (req, res, next) => {
   res.render("show")
-}
+},
 
 // @Method  GET
 exports.addRecipeIndex = (req, res) =>{

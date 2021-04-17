@@ -40,7 +40,12 @@
   }
 
   .addIngredientBtn {
-    width: 100%;
+    text-align: center;
+    align-items: center;
+  }
+
+  .addIngredientBtn button {
+    width: 80%;
   }
   /* toggle switch stuff */
 
@@ -109,6 +114,20 @@
 ol, ul {
     padding-inline-start: 0;
   }
+
+  /* View Page Elements */
+
+  .amountView {
+    width: 2em;
+    text-align: center;
+  }
+
+  .measurementView {
+    width: 5em;
+    text-align: center;
+  }
+
+  /* Index Page Elements */
   
   #searchBar {
       width: 100%; 
@@ -152,6 +171,15 @@ ol, ul {
     #recipeIndex li a:hover:not(.header) {
       background-color: #eee; /* Add a hover effect to all links, except for headers */
     }
+
+    #indexNav a {
+      margin:0.25em;
+    }
+
+    .indexItemMenu{
+      align-items: flex-end;
+      text-align: left;
+    }
   
     .recipeIndexItem {
       margin-top: .25em;
@@ -167,12 +195,14 @@ ol, ul {
   
     .recipeIndexItem a {
       text-decoration: none; 
+      text-align: left;
       font-size: 20px; 
       color: black; 
     }
   
     .recipeIndexItem button {
-      align-content:flex-start;
+      align-content:flex-end;
+      text-align: left;
       margin-right: .5rem;
     }
   
@@ -183,15 +213,32 @@ ol, ul {
       align-items: center;
     }
   
-    .editableIngredientList {
+    #editableIngredientList {
       padding: 1em;
-      width: 50%;
-      background-color: rgba(127, 255, 212, 0.445);
-      border: 1px solid plum;
+      width: 80%;
+      /* background-color: rgba(127, 255, 212, 0.445);
+      border: 1px solid plum; */
       margin-top: 1em;
       margin-bottom: 1em;
       margin-left: auto;
       margin-right: auto;
+    }
+
+    .formSection {
+      padding: 1em;
+      width: 80%;
+      background-color: rgba(127, 255, 212, 0.445);
+      border: 1px solid plum;
+      margin-top: 1em;
+      margin-bottom: 1em;
+      margin-left: 0;
+      margin-right: 0;
+    }
+
+    .formSection
+
+    .formSection h4 {
+      text-align: left;
     }
   
     .editableIngredientList input[for="amount"]{
@@ -204,21 +251,38 @@ ol, ul {
       width: 30%;
     }
   
-    .editableIngredientListItem {
+    /* .editableIngredientListItem {
       margin-top: 0.5em;
       margin-bottom: 1em;
       background-color: rgb(127, 255, 212);
+    } */
+
+    .editableIngredientListItem input[name="amount"] {
+      width: 30%;
+    }
+
+    .editableIngredientListItem[name="amount"] {
+      
+    }
+
+    .editableIngredientListItem[name="title"] {
+      
     }
   
     .editableIngredientListItem input{
       margin-top: 12px;
-      margin-bottom: auto;
+      margin-bottom: 0.75em;
     }
   
     .editableIngredientListItem select{
       margin-top: 12px;
       margin-bottom: auto;
     }
+
+    .editableIngredientListItem div{
+      margin-bottom: 1em;
+    }
+
 
 /* Glass stuff */
   

@@ -2,6 +2,10 @@
 <head>
     <title>Recipe Maker</title>
     <meta charset="utf-8">
+    <link rel="apple-touch-icon" sizes="180x180" href="/icons/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/icons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/icons/favicon-16x16.png">
+    <link rel="manifest" href="icons/site.webmanifest">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <link href="/styles.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
@@ -11,7 +15,11 @@
 
 <div class="modifyRecipe container" id="recipeEdit">
     <div id="backButton">
+<<<<<<< HEAD
         <a class="btn btn-outline-danger" href="/">back</a>
+=======
+        <a class="btn btn-outline-danger" href="/   ">back</a>
+>>>>>>> 20f861d
     </div>
     <h2>Edit Ingredients</h2>
     <div class="flashes">
@@ -47,23 +55,29 @@
             </div>
             
             <% recipe.ingredients.forEach(main => { %>
-                <div class="row editableIngredientListItem" id="mainListItem<%= main.name %>">
+                <div class="row editableIngredientListItem" id="mainListItem<% main.name %>">
                     <div class="col">
                         <input type="text" name="title" value="<%= main.name %>">
                     </div>
                     <div class="col">
+<<<<<<< HEAD
                         <input type="number" name="amount" value="<%= main.amount %>">
                         <select name="measurement" value=<% main.measurment %>>
+=======
+                        <input type="number" name="amount" placeholder="Amt." value="<%= main.amount %>">
+                        <select name="measurement" value=<%= blend.measurement %>>
+                            <option value="" disabled selected>Measurement</option>
+>>>>>>> 20f861d
                             <option value="teaspoon">Teaspoons</option>
-                            <option selected="selected" value="tablespoons">Tablespoons</option>
+                            <option value="tablespoons">Tablespoons</option>
                             <option value="bars">Bars</option>
                             <option value="pounds">Pounds</option>
                             <option value="ounces">Ounces</option>
                         </select>
                     </div>
                     <div class="col">
-                        <button type="button" class="btn btn-warning" onclick="$(mainListItem<%= main.name %>).remove()"><img width=150% src="/icons/delete.png"></button>
-                        <button type="button" class="btn btn-warning" onclick="duplicateRow('main','<%= main.name %>')"><img width=150% src="/icons/duplicate.png"></button>
+                        <button type="button" class="btn btn-warning" onclick="$(mainListItem0).remove()"><img width=25% src="/icons/delete.png"></button>
+                        <button type="button" class="btn btn-warning" onclick="duplicateRow('main','0')"><img width=25% src="/icons/duplicate.png"></button>
                     </div>
                     <hr>
                 </div>
@@ -104,8 +118,8 @@
                            </select>
                        </div>
                        <div class="col">
-                           <button class="btn btn-warning"><img width=5% src="/icons/delete.png"></button>
-                           <button class="btn btn-warning"><img width=5% src="/icons/duplicate.png"></button>
+                           <button class="btn btn-warning"><img width=20% src="/icons/delete.png"></button>
+                           <button class="btn btn-warning"><img width=20% src="/icons/duplicate.png"></button>
                        </div>
                        <hr>
                    </div>
@@ -141,8 +155,8 @@
         </select>
         </div>
         <div class="col">
-            <button type="button" class="btn btn-warning" onclick="$(${(ingredientType === "main") ? "main" : "blend"}listItem${(ingredientType === "main") ? newMainCount : newBlendCount}).remove()"><img width=5% src="/icons/delete.png"></button>
-            <button type="button" class="btn btn-warning" onclick="duplicateRow('"${(ingredientType === "main") ? "main" : "blend"}, '${(ingredientType === "main") ? "main" : "blend"}listItem${(ingredientType === "main") ? newMainCount : newBlendCount}.name %>')"><img width=5% src="/icons/duplicate.png"></button>
+            <button type="button" class="btn btn-warning" onclick="$(${(ingredientType === "main") ? "main" : "blend"}listItem${(ingredientType === "main") ? newMainCount : newBlendCount}).remove()"><img width=20% src="/icons/delete.png"></button>
+            <button type="button" class="btn btn-warning" onclick="duplicateRow('"${(ingredientType === "main") ? "main" : "blend"}, '${(ingredientType === "main") ? "main" : "blend"}listItem${(ingredientType === "main") ? newMainCount : newBlendCount}.name %>')"><img width=20% src="/icons/duplicate.png"></button>
         </div>
         <hr>
     </div>

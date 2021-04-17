@@ -1,6 +1,9 @@
 <head>
     <title>Recipe Maker</title>
     <meta charset="utf-8">
+    <link rel="apple-touch-icon" sizes="180x180" href="/icons/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/icons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/icons/favicon-16x16.png">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <link href="/styles.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
@@ -40,9 +43,49 @@
                 </div>
                 <div class="col">
                     <h5>Amount</h5>
+                <div class="row formSection" >
+                    <span class="col-3 listItemTitle">Recipe Name:</span>
+                    <input class="col-9" placeholder="New Recipe" type=text>
                 </div>
-                <div class="col">
-                    <h5>Actions</h5>
+                <div class="container justify-content-center formSection">
+                    <h5>Main Ingredients:</h5>
+                    <div id="listTitles" class="row">
+                        <div class="col">
+                            <h5>Ingredient</h5>
+                        </div>
+                        <div class="col">
+                            <h5>Amount</h5>
+                        </div>
+                        <div class="col">
+                            <h5>Actions</h5>
+                        </div>
+                    </div>
+                    <hr>
+                        <div class="row editableIngredientListItem" id="mainListItem0">
+                            <div class="col">
+                                <input type="text" name="title" placeholder="New Ingredient">
+                            </div>
+                            <div class="col">
+                                <input type="number" name="amount" placeholder="Amt.">
+                                <select name="measurement" placeholder="Measurement">
+                                    <option value="" disabled selected>Measurement</option>
+                                    <option value="teaspoon">Teaspoons</option>
+                                    <option value="tablespoons">Tablespoons</option>
+                                    <option value="bars">Bars</option>
+                                    <option value="pounds">Pounds</option>
+                                    <option value="ounces">Ounces</option>
+                                </select>
+                            </div>
+                            <div class="col">
+                                <button type="button" class="btn btn-warning" onclick="$(mainListItem0).remove()"><img width=25% src="/icons/delete.png"></button>
+                                <button type="button" class="btn btn-warning" onclick="duplicateRow('main','0')"><img width=25% src="/icons/duplicate.png"></button>
+                            </div>
+                            <hr>
+                        </div>
+                    <span id="mainEnd"></span>
+                    <div class="row addIngredientBtn">
+                        <button type="button" class="col btn btn-primary" align="center" onclick="addRow('main')">Add Main Ingredient</button>
+                    </div>
                 </div>
             </div>
             
@@ -98,36 +141,40 @@
                             <h5>Actions</h5>
                         </div>
                     </div>
-                    
-                    <div class="row editableIngredientListItem" id="blendListItem0">
+                    <hr>
+                    <div class="row" id="blendListItem0">
                         <div class="col">
                             <input type="text" name="title" placeholder="New Ingredient">
                         </div>
                         <div class="col">
-                            <input type="number" name="amount" placehoder="Amount Value">
-                            <select name="measurement" placeholder="Amount Measurement">
+                            <input type="number" name="amount" placeholder="Amt.">
+                            <select name="measurement" placeholder="Measurement">
+                                <option value="" disabled selected>Measurement</option>
                                 <option value="teaspoon">Teaspoons</option>
                                 <option value="tablespoons">Tablespoons</option>
-                                <option value="handfulls">handfulls</option>
                                 <option value="bars">Bars</option>
                                 <option value="pounds">Pounds</option>
                                 <option value="ounces">Ounces</option>
                             </select>
                         </div>
                         <div class="col">
-                            <button type="button" class="btn btn-warning" onclick="$('#blendListItem0').remove()"><img width=5% src="/icons/delete.png"></button>
-                            <button type="button" class="btn btn-warning" onclick="duplicateRow('blend','0')"><img width=5% src="/icons/duplicate.png"></button>
+                            <button type="button" class="btn btn-warning" onclick="$('#blendListItem0').remove()"><img width=20% src="/icons/delete.png"></button>
+                            <button type="button" class="btn btn-warning" onclick="duplicateRow('blend','0')"><img width=25% src="/icons/duplicate.png"></button>
                         </div>
                         <hr>
                     </div>
         
                     <span id="blendEnd"></span>
                     <div class="row addIngredientBtn">
-                        <button type="button" class="btn-primary" onclick="addRow('blend')">Add Blend Ingredient</button>
+                        <button type="button" class="col btn btn-primary" align="center" onclick="addRow('blend')">Add Blend Ingredient</button>
                     </div>
                 </div>
             </div> -->
         <button type="submit" class="btn btn-primary">Add Recipe</button>
+            </div>
+
+            <!-- Form Submit -->
+        <button class="row btn btn-success" type="submit" value="Save Changes">Save Changes</button>
     </form>
 
 
@@ -142,21 +189,22 @@
         let newIngredientHTML = `
         <div class="row editableIngredientListItem" id="${(ingredientType === "main") ? "main" : "blend"}listItem${(ingredientType === "main") ? newMainCount : newBlendCount}">
         <div class="col">
-            <input type="text" name="ingredient">
+            <input type="text" name="title" placeholder="New Ingredient">
         </div>
         <div class="col">
-        <input type="number" name="amount" value=0>
-        <select name="measurement">
-            <option value="teaspoon">Teaspoons</option>
-            <option selected="selected" value="tablespoons">Tablespoons</option>
-            <option value="bars">Bars</option>
-            <option value="pounds">Pounds</option>
-            <option value="ounces">Ounces</option>
-        </select>
+            <input type="number" name="amount" placeholder="Amt.">
+            <select name="measurement" placeholder="Measurement">
+                <option value="" disabled selected>Measurement</option>
+                <option value="teaspoon">Teaspoons</option>
+                <option value="tablespoons">Tablespoons</option>
+                <option value="bars">Bars</option>
+                <option value="pounds">Pounds</option>
+                <option value="ounces">Ounces</option>
+            </select>
         </div>
         <div class="col">
-            <button type="button" class="btn btn-warning" onclick="$(${(ingredientType === "main") ? "main" : "blend"}listItem${(ingredientType === "main") ? newMainCount : newBlendCount}).remove()"><img width=5% src="/icons/delete.png"></button>
-            <button type="button" class="btn btn-warning" onclick="duplicateRow('"${(ingredientType === "main") ? "main" : "blend"}, '${(ingredientType === "main") ? "main" : "blend"}listItem${(ingredientType === "main") ? newMainCount : newBlendCount}.name')"><img width=5% src="/icons/duplicate.png"></button>
+            <button type="button" class="btn btn-warning" onclick="$(${(ingredientType === "main") ? "main" : "blend"}listItem${(ingredientType === "main") ? newMainCount : newBlendCount}).remove()"><img width=30% src="/icons/delete.png"></button>
+            <button type="button" class="btn btn-warning" onclick="duplicateRow('"${(ingredientType === "main") ? "main" : "blend"}, '${(ingredientType === "main") ? "main" : "blend"}listItem${(ingredientType === "main") ? newMainCount : newBlendCount}.name')"><img width=30% src="/icons/duplicate.png"></button>
         </div>
         <hr>
     </div>
