@@ -11,11 +11,11 @@
     <script src="scripts.js"></script>
 </head>
 
-<div id="backButton">
-    <a class="btn-outline-danger" href="/">Back</a>
-</div>
 
 <div class="modifyRecipe container" id="recipeEdit">
+    <div id="backButton">
+        <a class="btn btn-outline-danger" href="/">Back</a>
+    </div>
     <h2>Create New Recipe</h2>
     <div class="flashes">
         <% if (flashMessages) { %>
@@ -31,13 +31,14 @@
         <% } %>
       </div>
     <form action="/recipes/addrecipe" method="POST">
-        <div class="container justify-content-center" id="editableIngredientList">
-            <div class="row">
-                <div class="row formSection" >
+        <div class="container justify-content-center">
+            <div class="container justify-content-center formSection" id="editableIngredientList">
+                <div class="row" >
                     <span class="col-3 listItemTitle">Recipe Name:</span>
                     <input class="col-9" placeholder="New Recipe" type=text>
                 </div>
-                <div class="container justify-content-center formSection">
+            </div>
+                <div class="container justify-content-center formSection" id="editableIngredientList">
                     <h5>Main Ingredients:</h5>
                     <div id="listTitles" class="row">
                         <div class="col">
@@ -77,8 +78,6 @@
                         <button type="button" class="col btn btn-primary" align="center" onclick="addRow('main')">Add Main Ingredient</button>
                     </div>
                 </div>
-            </div>
-        </div>
                 <div row formSection>
                     <div class=col></div>
                     <div class=col>
@@ -107,7 +106,7 @@
                         </div>
                     </div>
                     <hr>
-                    <div class="row" id="blendListItem0">
+                    <div class="row editableIngredientListItem" id="blendListItem0">
                         <div class="col">
                             <input type="text" name="title" placeholder="New Ingredient">
                         </div>
@@ -123,7 +122,7 @@
                             </select>
                         </div>
                         <div class="col">
-                            <button type="button" class="btn btn-warning" onclick="$('#blendListItem0').remove()"><img width=20% src="/icons/delete.png"></button>
+                            <button type="button" class="btn btn-warning" onclick="$(blendListItem0).remove()"><img width=25% src="/icons/delete.png"></button>
                             <button type="button" class="btn btn-warning" onclick="duplicateRow('blend','0')"><img width=25% src="/icons/duplicate.png"></button>
                         </div>
                         <hr>
@@ -135,9 +134,10 @@
                     </div>
                 </div>
             </div>
+        </div>
 
             <!-- Form Submit -->
-        <button class="row btn btn-success" type="submit" value="Save Changes">Save Changes</button>
+        <button class="row btn btn-success" type="submit">Create Recipe</button>
     </form>
     <script src="scripts.js"></script>
     <script>

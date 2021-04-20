@@ -6,5 +6,8 @@ module.exports = {
     viewIndex : async(req, res) => {
       const DBrecipes = await Recipe.find({})
         res.render("index", {DBrecipes})
+    },
+    viewHelp : (req, res) => {
+      res.render("help")
     }
 }

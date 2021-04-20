@@ -109,6 +109,14 @@
     border-radius: 50%;
   }
 
+  /* General Page Elements */
+
+  .pageHeading {
+    text-decoration: underline;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+  }
+
 /* Class */
 
 ol, ul {
@@ -168,8 +176,8 @@ ol, ul {
       list-style-type: none;
     }
       
-    #recipeIndex li a:hover:not(.header) {
-      background-color: #eee; /* Add a hover effect to all links, except for headers */
+    #recipeIndex li a:hover:not(.header):not(.btn) {
+      background-color: #eee; 
     }
 
     #indexNav a {

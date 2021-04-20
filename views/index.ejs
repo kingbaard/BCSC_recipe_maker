@@ -27,7 +27,6 @@
   <body>
     <div class="content">
       <div id="recipeIndex" class="container">
-        <h1 class="text-center">Recipe Helper</h1>
         <div class="flashes">
           <% if (flashMessages) { %>
           <% if (flashMessages.success) { %>
@@ -49,12 +48,9 @@
           <% DBrecipes.forEach(recipe=> { %>
             <li class="recipeIndexItem row">
               <a href="/recipes/<%= recipe._id %>" class="col">
-                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#openModalView">
-                  View
-                </button>
                 <%= recipe.title %>
                 <div class="col-md-2 indexItemMenu">
-                  <a class="btn btn-outline-warning" href="/recipes/<%= recipe._id %>/edit">Edit </a>
+                  <a class="btn btn-outline-warning" href="/recipes/<%= recipe._id %>/edit">Edit</a>
                   <a class="btn btn-outline-danger">Delete</a>
                 </div>
 
@@ -79,51 +75,31 @@
         <div id="indexNav" class="container">
           <div id="newRecipeButton row">
             <a class="btn btn-success col-12" href="/recipes/addrecipe">
-              Add new recipe
+              Add New Recipe
             </a>
           </div>
-          <div id="helpButton row">
-            <a class="btn btn-success col-12" href="addrecipe">
-             Help Page
-            </a>
-          </div>
+          <!-- <button type="button" class="btn btn-success col-12" data-toggle="modal" data-target=".bd-example-modal-lg">Help page</button> -->
+          <a class="btn btn-success col-12" href="/help">About This Applet</a>
         </div>
         
       </div>
     </div>
       <script src="scripts.js"></script>
       
-      
-      
-      
-      
-      <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-        Launch demo modal
-      </button>
-      
-      <!-- Modal -->
-      <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLabel">View Recipe</h5>
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-              <iframe src="/">
 
-              </iframe>
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-              <button type="button" class="btn btn-primary">Save changes</button>
+      
+        <div class="modal fade bd-example-modal-lg" id="helpPageModal" tabindex="-1" role="dialog" aria-labelledby="helpPageModalLabel" aria-hidden="true">
+          <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+              <h3>Using the Recipe Application</h3>
+              <p>rem ipsum dolor sit amet, consectetur adipiscing elit. Etiam at ipsum nibh. Nulla quis elit mauris. Integer vestibulum pretium iaculis. Aliquam id tempus eros, in euismod elit. Cras sollicitudin elementum dui. Nullam malesuada leo in sem varius, et auctor tortor ultrices. Nulla hendrerit volutpat tellus. Etiam ullamcorper lectus id nunc ullamcorper venenatis. Quisque purus tellus, tincidunt eget tempus vulputate, interdum eget massa.
+
+                Mauris ac mollis velit, ac sodales lectus. Donec semper lorem non quam lobortis finibus. Duis efficitur placerat placerat. Ut vel porta nulla, gravida vulputate eros. Donec rutrum, massa et consequat mollis, augue mauris dictum libero, at congue erat ante a nunc. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Nam rhoncus, lectus vel auctor interdum, felis neque lobortis nulla, vel sodales tortor dui sed felis. Vestibulum dignissim non magna a lobortis. In finibus facilisis massa quis pretium.
+                
+                Phasellus sagittis velit sem, eget sollicitudin tellus tempus sed. Quisque at diam vehicula, pharetra ex eu, euismod ipsum. Aliquam sit amet tempor tellus. Fusce ullamcorper, erat quis rhoncus malesuada, felis magna laoreet massa, maximus condimentum nisl nisi ut purus. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Suspendisse cursus eget ex eget convallis. Nulla vel felis tortor. Vestibulum eleifend neque ut lacus bibendum porttitor. Cras dictum a mauris sed imperdiet.</p>
             </div>
           </div>
         </div>
-      </div>
-      
-      
-      
       
       
       

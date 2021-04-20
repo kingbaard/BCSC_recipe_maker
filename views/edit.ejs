@@ -13,115 +13,150 @@
     <script src="scripts.js"></script>
 </head>
 
-<div class="modifyRecipe container" id="recipeEdit">
-    <div id="backButton">
-        <a class="btn btn-outline-danger" href="/   ">back</a>
-    </div>
-    <h2>Edit Ingredients</h2>
-    <div class="flashes">
-        <% if (flashMessages) { %>
-        <% if (flashMessages.success) { %>
-        <div class="flash success">
-          <%= flashMessages.success %>
-        </div>
-        <% } else if (flashMessages.error) { %>
-        <div class="flash error">
-          <%= flashMessages.error %>
-        </div>
-        <% } %>
-        <% } %>
-      </div>
-    <form action="edit/_id" method="POST">
+
+<form action="/<%= recipe._id %>/edit/" method="POST">
+    <div class="modifyRecipe container" id="recipeEdit">
         <div class="row">
-            <h4>Recipe Name:</h4>
+            <div class="col" id="backButton">
+                <a class="col-4 btn btn-outline-danger" href="/   ">back</a>
+            </div>
+            <div class="col">
+                <h2 class="pageHeading">Edit Ingredients</h2>
+            </div>
+            <div class="col">
+                
+            </div>
         </div>
-        <input style="width: 50%;" value="<%= recipe.title %>" type=text>
-        <h4>Main Ingredients:</h4>
-        <div class="container justify-content-center" id="editableIngredientList">
-            <div id="listTitles" class="row">
-                <div class="col">
-                    <h5>Ingredient</h5>
-                </div>
-                <div class="col">
-                    <h5>Amount</h5>
-                </div>
-                <div class="col">
-                    <h5>Actions</h5>
+        <div class="flashes">
+            <% if (flashMessages) { %>
+            <% if (flashMessages.success) { %>
+            <div class="flash success">
+              <%= flashMessages.success %>
+            </div>
+            <% } else if (flashMessages.error) { %>
+            <div class="flash error">
+              <%= flashMessages.error %>
+            </div>
+            <% } %>
+            <% } %>
+          </div>
+    
+    
+    
+    
+    
+    
+          <div class="container justify-content-center">
+            <div class="container justify-content-center formSection" id="editableIngredientList">
+                <div class="row" >
+                    <span class="col-3 listItemTitle">Recipe Name:</span>
+                    <input class="col-9" placeholder="New Recipe" type=text>
                 </div>
             </div>
-            
-            <% recipe.ingredients.forEach(main => { %>
-                <div class="row editableIngredientListItem" id="mainListItem<% main.name %>">
-                    <div class="col">
-                        <input type="text" name="title" value="<%= main.name %>">
-                    </div>
-                    <div class="col">
-                        <input type="number" name="amount" placeholder="Amt." value="<%= main.amount %>">
-                        <select name="measurement" value=<%= blend.measurement %>>
-                            <option value="" disabled selected>Measurement</option>
-                            <option value="teaspoon">Teaspoons</option>
-                            <option value="tablespoons">Tablespoons</option>
-                            <option value="bars">Bars</option>
-                            <option value="pounds">Pounds</option>
-                            <option value="ounces">Ounces</option>
-                        </select>
-                    </div>
-                    <div class="col">
-                        <button type="button" class="btn btn-warning" onclick="$(mainListItem0).remove()"><img width=25% src="/icons/delete.png"></button>
-                        <button type="button" class="btn btn-warning" onclick="duplicateRow('main','0')"><img width=25% src="/icons/duplicate.png"></button>
+                <div class="container justify-content-center formSection" id="editableIngredientList">
+                    <h5>Main Ingredients:</h5>
+                    <div id="listTitles" class="row">
+                        <div class="col">
+                            <h5>Ingredient</h5>
+                        </div>
+                        <div class="col">
+                            <h5>Amount</h5>
+                        </div>
+                        <div class="col">
+                            <h5>Actions</h5>
+                        </div>
                     </div>
                     <hr>
+                    <% recipe.ingredients.forEach(main => { %>
+                        <div class="row editableIngredientListItem" id="mainListItem<% main.name %>">
+                            <div class="col">
+                                <input type="text" name="title" value="<%= main.name %>">
+                            </div>
+                            <div class="col">
+                                <input type="number" name="amount">
+                                <select name="measurement" >
+                                    <option value="<%= main.measurment %>"><%= main.measurment %></option>
+                                    <option value="teaspoon">Teaspoons</option>
+                                    <option value="tablespoons">Tablespoons</option>
+                                    <option value="bars">Bars</option>
+                                    <option value="pounds">Pounds</option>
+                                    <option value="ounces">Ounces</option>
+                                </select>
+                            </div>
+                            <div class="col">
+                                <button type="button" class="btn btn-warning" onclick="$(mainListItem<% main.name %>).remove()"><img width=25% src="/icons/delete.png"></button>
+                                <button type="button" class="btn btn-warning" onclick="duplicateRow('main','<% main.name %>')"><img width=25% src="/icons/duplicate.png"></button>
+                            </div>
+                            <hr>
+                        </div>
+                        <% }); %>
+                    <span id="mainEnd"></span>
+                    <div class="row addIngredientBtn">
+                        <button type="button" class="col btn btn-primary" align="center" onclick="addRow('main')">Add Main Ingredient</button>
+                    </div>
                 </div>
-            <% }); %>
-            <span id="mainEnd"></span>
-            <div class="row addIngredientBtn">
-                <button type="button" class="btn-primary" onclick="addRow('main')">Add Main Ingredient</button>
-            </div>
-        </div>
-           <!-- Blend ingredients -->
-           <h4>Blend Ingredients:</h4>
-           <div class="container justify-content-center" id="editableIngredientList">
-               <div id="listTitles" class="row">
-                   <div class="col">
-                       <h5>Ingredient</h5>
-                   </div>
-                   <div class="col">
-                       <h5>Amount</h5>
-                   </div>
-                   <div class="col">
-                       <h5>Actions</h5>
-                   </div>
-               </div>
-               
-               <% recipe.ingredients.forEach(blend => { %>
-                   <div class="row editableIngredientListItem" id="blendListItem">
-                       <div class="col">
-                           <input type="text" name="title" value="<% blend.name %>">
-                       </div>
-                       <div class="col">
-                           <input type="number" name="amount" value="<% blend.amount %>">
-                           <select name="measurement" value="<% blend.measurment %>">
-                               <option value="teaspoon">Teaspoons</option>
-                               <option selected="selected" value="tablespoons">Tablespoons</option>
-                               <option value="grams">Grams</option>
-                               <option value="cups">Cups</option>
-                               <option value="gallons">Gallons</option>
-                           </select>
-                       </div>
-                       <div class="col">
-                           <button class="btn btn-warning"><img width=20% src="/icons/delete.png"></button>
-                           <button class="btn btn-warning"><img width=20% src="/icons/duplicate.png"></button>
-                       </div>
-                       <hr>
-                   </div>
-                <% }); %>
-                <span id="blendEnd"></span>
-                <div class="row addIngredientBtn">
-                    <button type="button" class="btn-primary" onclick="addRow('blend')">Add Blend Ingredient</button>
+                <div row formSection>
+                    <div class=col></div>
+                    <div class=col>
+                        Has Blend?
+                    </div>
+                    <label for=hasBlend class="col switch">
+                        <input type="checkbox" name=hasBlend id=hasBlend checked>
+                        <span class="slider round"></span>
+                    </label>
+                      <div class=col></div>
+                </div>
+            <div id="blendSection" hidden>
+                <div class="container justify-content-center formSection" id="editableIngredientList">
+                    <h5>Blend Ingredients</h5>
+                    <div id="listTitles" class="row">
+                        <div class="col">
+                            <h5>Ingredient</h5>
+                        </div>
+                        <div class="col">
+                            <h5>Amount</h5>
+                        </div>
+                        <div class="col">
+                            <h5>Actions</h5>
+                        </div>
+                    </div>
+                    <hr>
+                    <% recipe.blends.ingredients.forEach(blend => { %>
+                        <div class="row editableIngredientListItem" id="blendListItem<% blend.name %>">
+                            <div class="col">
+                                <input type="text" name="title" value="<%= blend.name %>">
+                            </div>
+                            <div class="col">
+                                <input type="number" name="amount">
+                                <select name="measurement" >
+                                    <option value="<%= blend.measurment %>"><%= blend.measurment %></option>
+                                    <option value="teaspoon">Teaspoons</option>
+                                    <option value="tablespoons">Tablespoons</option>
+                                    <option value="bars">Bars</option>
+                                    <option value="pounds">Pounds</option>
+                                    <option value="ounces">Ounces</option>
+                                </select>
+                            </div>
+                            <div class="col">
+                                <button type="button" class="btn btn-warning" onclick="$(mainListItem<% blend.name %>).remove()"><img width=25% src="/icons/delete.png"></button>
+                                <button type="button" class="btn btn-warning" onclick="duplicateRow('blend','<% blend.name %>')"><img width=25% src="/icons/duplicate.png"></button>
+                            </div>
+                            <hr>
+                        </div>
+                        <% }); %>
+        
+                    <span id="blendEnd"></span>
+                    <div class="row addIngredientBtn">
+                        <button type="button" class="col btn btn-primary" align="center" onclick="addRow('blend')">Add Blend Ingredient</button>
+                    </div>
                 </div>
             </div>
-           <button type="submit">Save Edits</button>
-    </form>
+            <!-- submit button -->
+            <button class="row btn btn-success" style="width: 80%;" type="submit">Save Changes</button>
+</form>
+    </div>
+
+
     <script src="scripts.js"></script>
     <script>
     let newMainCount = 0;
@@ -132,7 +167,7 @@
         let newIngredientHTML = `
         <div class="row editableIngredientListItem" id="${(ingredientType === "main") ? "main" : "blend"}listItem${(ingredientType === "main") ? newMainCount : newBlendCount}">
         <div class="col">
-            <input type="text" name="title">
+            <input type="text" name="title" placeholder="new ingredient">
         </div>
         <div class="col">
         <input type="number" name="amount" value=0>
@@ -171,5 +206,15 @@
             $("#blendEnd").before(element);
         }
     }
+
+    $('input[type=checkbox]').change(
+        function(){
+            if (this.checked) {
+                console.log("hi")
+                $('#blendSection').removeAttr('hidden')
+            } else {
+                $('#blendSection').attr("hidden",true)
+            }
+        });
         </script>
 </div>
